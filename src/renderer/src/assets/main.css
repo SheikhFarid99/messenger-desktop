@@ -1,3 +1,9 @@
+#app-header {
+    -webkit-app-region: drag;
+}
+#setting{
+    -webkit-app-region: no-drag;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
