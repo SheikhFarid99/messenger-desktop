@@ -11,12 +11,12 @@ const Header = () => {
         }
     }
 
-    const minimize = ()=>{
+    const minimize = () => {
         if (window.electron.ipcRenderer) {
             window.electron.ipcRenderer.send('minimize')
         }
     }
-    const maximize = ()=>{
+    const maximize = () => {
         if (window.electron.ipcRenderer) {
             window.electron.ipcRenderer.send('maximize')
         }
@@ -33,7 +33,7 @@ const Header = () => {
                     <div onClick={minimize} className='w-[40px] h-full hover:bg-slate-700 cursor-pointer text-white transition-all flex justify-center items-center'>
                         <span> <FaMinus /></span>
                     </div>
-                    <div  onClick={maximize} className='w-[40px] h-full hover:bg-slate-700 cursor-pointer text-white transition-all flex justify-center items-center'>
+                    <div onClick={maximize} className='w-[40px] h-full hover:bg-slate-700 cursor-pointer text-white transition-all flex justify-center items-center'>
                         <span> <BiSquare /></span>
                     </div>
                     <div onClick={close} className='w-[40px] h-full hover:bg-red-700 cursor-pointer text-white transition-all flex justify-center items-center text-xl'>
