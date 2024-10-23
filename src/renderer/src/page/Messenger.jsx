@@ -1,12 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../assets/logo.png'
 import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { IoIosSearch } from 'react-icons/io'
+import Friends from '../components/Friends'
 
 const Messenger = () => {
 
     const theme = 'white'
+    const [loader, setLoader] = useState(false)
+    const [friends, setFriends] = useState([
+        {
+            id: 1,
+            image: Logo,
+            fndInfo: {
+                userName: 'Sheikh Farid',
+            },
+            msgInfo: {
+                senderId: 1,
+                status: 'unseen',
+                message: {
+                    text: 'How are you? hello hello hello asda sdasdasdasd  '
+                }
+            }
+        },
+        {
+            id: 2,
+            image: Logo,
+            fndInfo: {
+                userName: 'Himel Islam',
+            },
+            msgInfo: {
+                senderId: 5,
+                status: 'seen',
+                message: {
+                    text: 'How are you? hello  hello hello asdas dasd as'
+                }
+            }
+        }
+    ])
+
+    const active_friends = [
+        {
+            id: 1
+        }
+    ]
 
     return (
         <div className='w-full h-full'>
@@ -55,7 +93,7 @@ const Messenger = () => {
                     <div className='w-full h-[calc(100%-126px)]'>
                         <div className='w-full flex flex-col justify-start items-center h-full overflow-y-auto'>
                             {
-                                [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 1, 1, 1, 1, 1].map((item, i) => <div key={i} className={`flex px-3 py-2 w-full animate-pulse`}>
+                                loader ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 1, 1, 1, 1, 1].map((item, i) => <div key={i} className={`flex px-3 py-2 w-full animate-pulse`}>
                                     <div className='w-[48px] h-[48px] rounded-full overflow-hidden flex justify-center items-center bg-gray-300'>
                                         <svg class="w-[20px] h-[20px] text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                                             <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
@@ -66,7 +104,7 @@ const Messenger = () => {
                                         <div className='h-2 bg-gray-200 rounded-full w-full'></div>
                                     </div>
 
-                                </div>)
+                                </div>) : friends && friends.length > 0 && friends.map((f, i) => <Friends item={f} key={i} active_friends={active_friends} />)
                             }
                         </div>
                     </div>
