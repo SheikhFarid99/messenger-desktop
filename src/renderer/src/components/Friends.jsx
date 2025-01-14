@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { RiCheckboxCircleFill } from 'react-icons/ri'
+import { HiOutlineCheckCircle } from 'react-icons/hi'
+
 const Friends = ({ item, active_friends }) => {
     const { pathname } = useLocation()
     const theme = 'white'
@@ -23,10 +26,26 @@ const Friends = ({ item, active_friends }) => {
                             item?.msgInfo && item?.msgInfo.senderId === userInfo.id ? <span className='text-xs font-[300]'>You </span> : <span className={item.msgInfo?.senderId !== userInfo.id && item.msgInfo?.status !== undefined && item.msgInfo?.status !== 'seen' ? 'text-xs font-[700]' : "text-xs font-[400]"}>{item.fndInfo?.userName + " "}</span>
                         }
                         {
-                            item.msgInfo && item.msgInfo?.message?.text ? <span className={item.msgInfo?.senderId !== userInfo.id && item?.msgInfo?.status !== undefined && item.msgInfo?.status !== 'seen' ? 'text-xs font-[700]' : 'text-xs font-[400]'}>{item.msgInfo?.message?.text?.slice(0,10)}...</span> : item?.msgInfo && item.msgInfo?.message?.image ? <span className='text-xs'>send a image</span> : <span className='text-xs font-[400]'>connect you</span>
+                            item.msgInfo && item.msgInfo?.message?.text ? <span className={item.msgInfo?.senderId !== userInfo.id && item?.msgInfo?.status !== undefined && item.msgInfo?.status !== 'seen' ? 'text-xs font-[700]' : 'text-xs font-[400]'}>{item.msgInfo?.message?.text?.slice(0, 10)}... </span> : item?.msgInfo && item.msgInfo?.message?.image ? <span className='text-xs'>send a image </span> : <span className='text-xs font-[400]'>connect you </span>
                         }
+                        <span>2m ago</span>
                     </div>
                 </div>
+                {
+                    userInfo?.id === item.msgInfo?.senderId ? <div className='flex justify-center items-center'>
+                        {
+                            item.msgInfo?.status === 'seen' ? <img className='w-[15px] h-[15px] rounded-full' src={item.image} alt={item.fndInfo?.userName} /> : item.msgInfo?.status === 'delivared' ? <div className={`${theme === 'dark' ? 'text-white' : 'text-[#050505]'}`}>
+                                <RiCheckboxCircleFill />
+                            </div> : <div className={`${theme === 'dark' ? 'text-white' : 'text-[#050505]'}`}>
+                                <HiOutlineCheckCircle />
+                            </div>
+                        }
+                    </div> : <div className='flex justify-center items-center'>
+                        {
+                            (item.msgInfo?.status !== undefined && item?.msgInfo?.status !== 'seen') && <div className='w-[15px] h-[15px] rounded-full bg-cyan-500'></div>
+                        }
+                    </div>
+                }
             </div>
         </Link>
     )

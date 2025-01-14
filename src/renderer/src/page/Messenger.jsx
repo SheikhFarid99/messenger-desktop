@@ -17,8 +17,8 @@ const Messenger = () => {
                 userName: 'Sheikh Farid',
             },
             msgInfo: {
-                senderId: 1,
-                status: 'unseen',
+                senderId: 5,
+                status: 'delivared',
                 message: {
                     text: 'How are you? hello hello hello asda sdasdasdasd  '
                 }
